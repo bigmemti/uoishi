@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" dir="{{config('app.locale') == 'fa' ? 'rtl' : 'ltr'}}">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,28 +14,28 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100 pt-16">
+        <div class="min-h-screen bg-gray-100 pt-32">
             <!-- Page Content -->
             <main>
                 <div class="container mx-auto">
 
                     <section>
                         <div>
-                            <h1 class=" text-3xl font-extrabold ">Create To Do :</h1>
+                            <h1 class=" text-3xl font-extrabold ">{{__("Create To Do")}} :</h1>
 
                             <div>
                                 <form action="{{ route('task.store') }}" method="POST" class="flex flex-col mt-16 gap-4">
                                     @csrf
 
-                                    <lable class="text-gray-400 font-bold">Title</lable>
+                                    <lable class="text-gray-400 font-bold">{{__("Title")}}</lable>
                                     <input type="text" name="title" id="title" class="rounded-lg transition-all duration-300" autofocus value="{{old('title')}}">
                                     @error('title')
                                         <p class="text-sm text-red-600">{{$message}}</p>
                                     @enderror
 
-                                    <button type="submit" class="w-16 ring-2 ring-transparent px-3 py-2 text-center rounded-lg bg-blue-700 text-white
+                                    <button type="submit" class="w-16 rtl:w-28 ring-2 ring-transparent px-3 py-2 text-center rounded-lg bg-blue-700 text-white
                                         hover:bg-blue-600 active:ring-blue-400 active:bg-blue-500">
-                                        Add
+                                        {{__("Add")}}
                                     </button>
                                 </form>
                             </div>
@@ -49,10 +49,10 @@
 
                                 <thead>
                                     <tr class="border-b-4 border-b-black text-2xl">
-                                        <th class="text-center">#</th>
-                                        <th class="text-center">Title</th>
-                                        <th class="text-center">Status</th>
-                                        <th class="text-center">Action</th>
+                                        <th class="text-center">{{__("#")}}</th>
+                                        <th class="text-center">{{__("Title")}}</th>
+                                        <th class="text-center">{{__("Status")}}</th>
+                                        <th class="text-center">{{__("Action")}}</th>
                                     </tr>
                                 </thead>
 
@@ -78,7 +78,7 @@
                                                                 this.task.status = data.data.status;
                                                                 Toast.fire({
                                                                     icon: 'success',
-                                                                    title: 'Successfully updated.'
+                                                                    title: '{!!__("Successfully updated.") !!}'
                                                                 })
                                                             })
                                                     }
@@ -92,13 +92,14 @@
 
                                                 <form @submit.prevent="
                                                     Swal.fire({
-                                                        title: 'Are you sure?',
-                                                        text: 'You won\'t be able to revert this!',
+                                                        title: '{!!__("Are you sure?")!!}',
+                                                        text: '{!!__("You won\\'t be able to revert this!")!!}',
                                                         icon: 'warning',
                                                         showCancelButton: true,
                                                         confirmButtonColor: '#3085d6',
                                                         cancelButtonColor: '#d33',
-                                                        confirmButtonText: 'Yes, delete it!'
+                                                        cancelButtonText:'{!!__("Cancel")!!}',
+                                                        confirmButtonText: '{!!__("Yes, delete it!")!!}'
                                                     }).then((result) => {
                                                         if (result.isConfirmed) {
                                                             $event.target.submit()
@@ -109,7 +110,7 @@
                                                     @method('delete')
                                                     <button type="submit" class="w-18 ring-2 ring-transparent px-3 py-2 text-center rounded-lg
                                                         bg-red-700 text-white hover:bg-red-600 active:ring-red-400 active:bg-red-500 my-2">
-                                                        delete
+                                                        {{__("delete")}}
                                                     </button>
                                                 </form>
 
@@ -121,7 +122,7 @@
                                         <tr class="border-b-2 border-b-gray-400 text-xl">
                                             <td colspan="4" class="text-center text-gray-600 cursor-pointer text-2xl
                                                 hover:text-gray-300  hover:bg-gray-700 transition-all duration-300">
-                                                {{__('there is no task')}}
+                                                {{__("there is no task.")}}
                                             </td>
                                         </tr>
 

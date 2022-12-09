@@ -1,0 +1,16 @@
+{
+    "Create To Do" : " یک تسک ایجاد کنید",
+    "Successfully created." : "تسک با موفقیت ایجاد شد.",
+    "Successfully deleted." : "تسک با موفقیت حذف شد.",
+    "Title" : "عنوان",
+    "Add" : "اضافه کردن",
+    "Status" : "وضعیت",
+    "Action" : "عملیات",
+    "Successfully updated." : "تسک با موفقیت بروزرسانی شد.",
+    "Are you sure?" : "آیا مطمئن هستید؟",
+    "You won\\'t be able to revert this!" : "شما نمی‌توانید این عمل را بازگردانید.",
+    "Cancel" : "انصراف",
+    "Yes, delete it!" : "بله، حذف کن.",
+    "delete" : "حذف",
+    "there is no task." : "هیچ تسکی وجود ندارد."
+}

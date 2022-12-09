@@ -40,7 +40,7 @@ class TaskController extends Controller
     {
         Task::create($request->validated());
 
-        return to_route('task.index')->with('success', 'Successfully created.');
+        return to_route('task.index')->with('success', __("Successfully created."));
     }
 
     /**
@@ -87,6 +87,6 @@ class TaskController extends Controller
     {
         $task->delete();
 
-        return to_route('task.index')->with('success', 'Successfully deleted.');
+        return to_route('task.index')->with('success', __("Successfully deleted."));
     }
 }
