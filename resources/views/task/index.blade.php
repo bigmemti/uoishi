@@ -115,16 +115,27 @@
 
                                             </td>
                                         </tr>
+
                                     @empty
 
+                                        <tr class="border-b-2 border-b-gray-400 text-xl">
+                                            <td colspan="4" class="text-center text-gray-600 cursor-pointer text-2xl
+                                                hover:text-gray-300  hover:bg-gray-700 transition-all duration-300">
+                                                {{__('there is no task')}}
+                                            </td>
+                                        </tr>
+
                                     @endforelse
+
                                 </tbody>
                             </table>
                         </div>
                     </section>
+
                 </div>
             </main>
         </div>
+
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script>
             const Toast = Swal.mixin({
@@ -139,6 +150,7 @@
                 }
             })
         </script>
+
         @if (session('success'))
             <script>
                 Toast.fire({
@@ -147,13 +159,15 @@
                 })
             </script>
         @endif
+
         @if (session('error'))
-        <script>
-            Toast.fire({
-                icon: 'error',
-                title: @js(session('error'))
-            })
-        </script>
-    @endif
+            <script>
+                Toast.fire({
+                    icon: 'error',
+                    title: @js(session('error'))
+                })
+            </script>
+        @endif
+
     </body>
 </html>
