@@ -15,7 +15,9 @@ class TaskController extends Controller
      */
     public function index()
     {
-        //
+        $tasks = Task::latest()->get();
+
+        return view('task.index', ['tasks' => $tasks]);
     }
 
     /**
@@ -36,7 +38,9 @@ class TaskController extends Controller
      */
     public function store(StoreTaskRequest $request)
     {
-        //
+        Task::create($request->validated());
+
+        return to_route('task.index')->with('success', 'Successfully created.');
     }
 
     /**
@@ -81,6 +85,8 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
-        //
+        $task->delete();
+
+        return to_route('task.index')->with('success', 'Successfully deleted.');
     }
 }
