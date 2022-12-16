@@ -133,6 +133,10 @@
                                 </tbody>
                             </table>
                         </div>
+                        
+                        <div class="my-4">
+                            {{$tasks->links()}}
+                        </div>
                     </section>
 
                 </div>
