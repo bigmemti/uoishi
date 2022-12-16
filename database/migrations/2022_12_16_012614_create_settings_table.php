@@ -15,6 +15,10 @@ return new class extends Migration
     {
         Schema::create('settings', function (Blueprint $table) {
             $table->id();
+            $table->string('name')->unique();
+            $table->string('en_title');
+            $table->string('fa_title');
+            $table->string('value');
             $table->timestamps();
         });
     }
