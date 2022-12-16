@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Task;
 use App\Http\Requests\StoreTaskRequest;
 use App\Http\Requests\UpdateTaskRequest;
+use App\Models\Setting;
 
 class TaskController extends Controller
 {
@@ -15,7 +16,8 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $tasks = Task::latest()->paginate(5);
+        $task_per_page = Setting::where('name', 'task_per_page')->first()->value;
+        $tasks = Task::latest()->paginate($task_per_page);
 
         return view('task.index', ['tasks' => $tasks]);
     }
