@@ -122,7 +122,9 @@
                                         <tr class="border-b-2 border-b-gray-400 text-xl">
                                             <td colspan="4" class="text-center text-gray-600 cursor-pointer text-2xl
                                                 hover:text-gray-300  hover:bg-gray-700 transition-all duration-300">
-                                                {{__("there is no task.")}}
+                                                <p class="my-2">
+                                                    {{__("there is no task.")}}
+                                                </p>
                                             </td>
                                         </tr>
 
