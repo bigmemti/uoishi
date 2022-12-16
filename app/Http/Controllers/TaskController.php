@@ -16,8 +16,8 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $task_per_page = Setting::where('name', 'task_per_page')->first()->value;
-        $tasks = Task::latest()->paginate($task_per_page);
+
+        $tasks = Task::latest()->paginate(getSetting('task_per_page'));
 
         return view('task.index', ['tasks' => $tasks]);
     }
