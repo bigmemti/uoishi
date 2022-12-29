@@ -18,7 +18,7 @@ use App\Http\Controllers\TaskStatusController;
 
 Route::redirect('/', '/task');
 
-Route::resource('task', TaskController::class);
+Route::resource('user.task', TaskController::class, ['only' => ['index', 'store', 'destroy']])->shallow()->middleware(['auth']);
 
 
 // Route::get('/dashboard', function () {
@@ -31,4 +31,4 @@ Route::resource('task', TaskController::class);
 //     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 // });
 
-// require __DIR__.'/auth.php';
+require __DIR__.'/auth.php';

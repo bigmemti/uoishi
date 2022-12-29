@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Task;
+use App\Models\User;
 use App\Http\Requests\StoreTaskRequest;
 use App\Http\Requests\UpdateTaskRequest;
-use App\Models\Setting;
 
 class TaskController extends Controller
 {
@@ -14,10 +14,10 @@ class TaskController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(User $user)
     {
 
-        $tasks = Task::latest()->paginate(getSetting('task_per_page'));
+        $tasks = $user->tasks()->latest()->paginate($user->task_per_page);
 
         return view('task.index', ['tasks' => $tasks]);
     }
@@ -38,11 +38,11 @@ class TaskController extends Controller
      * @param  \App\Http\Requests\StoreTaskRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreTaskRequest $request)
+    public function store(StoreTaskRequest $request, User $user)
     {
         Task::create($request->validated());
 
-        return to_route('task.index')->with('success', __("Successfully created."));
+        return to_route('user.task.index', ['user' => $user])->with('success', __("Successfully created."));
     }
 
     /**
@@ -87,8 +87,9 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
+        $user = $task->user_id;
         $task->delete();
 
-        return to_route('task.index')->with('success', __("Successfully deleted."));
+        return to_route('user.task.index', ['user' => $user])->with('success', __("Successfully deleted."));
     }
 }

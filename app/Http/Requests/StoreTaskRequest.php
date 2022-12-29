@@ -13,7 +13,7 @@ class StoreTaskRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return request()->user->id == auth()->user()->id;
     }
 
     /**
@@ -26,5 +26,10 @@ class StoreTaskRequest extends FormRequest
         return [
             'title' => 'required|string|min:4'
         ];
+    }
+
+    public function validated($key = null, $default = null)
+    {
+        return [...parent::validated(), 'user_id' => request()->user->id];
     }
 }

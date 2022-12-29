@@ -24,7 +24,7 @@
                             <h1 class=" text-3xl font-extrabold ">{{__("Create To Do")}} :</h1>
 
                             <div>
-                                <form action="{{ route('task.store') }}" method="POST" class="flex flex-col mt-16 gap-4">
+                                <form action="{{ route('user.task.store', ['user' => 1]) }}" method="POST" class="flex flex-col mt-16 gap-4">
                                     @csrf
 
                                     <lable class="text-gray-400 font-bold">{{__("Title")}}</lable>
@@ -133,7 +133,7 @@
                                 </tbody>
                             </table>
                         </div>
-                        
+
                         <div class="my-4">
                             {{$tasks->links()}}
                         </div>
