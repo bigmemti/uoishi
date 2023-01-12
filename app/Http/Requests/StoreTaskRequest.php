@@ -13,7 +13,7 @@ class StoreTaskRequest extends FormRequest
      */
     public function authorize()
     {
-        return request()->user->id == auth()->user()->id;
+        return auth()->user()->is_admin || request()->user->id == auth()->user()->id;
     }
 
     /**

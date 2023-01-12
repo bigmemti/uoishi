@@ -16,10 +16,10 @@ class TaskController extends Controller
      */
     public function index(User $user)
     {
-
+        $this->authorize('viewAny', [Task::class,$user]);
         $tasks = $user->tasks()->latest()->paginate($user->task_per_page);
 
-        return view('task.index', ['tasks' => $tasks]);
+        return view('task.index', ['tasks' => $tasks, 'user' => $user]);
     }
 
     /**
@@ -87,6 +87,8 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
+        $this->authorize('delete', $task);
+
         $user = $task->user_id;
         $task->delete();
 

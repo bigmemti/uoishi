@@ -23,6 +23,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'task_per_page',
+        'type'
     ];
 
     /**
@@ -53,6 +55,16 @@ class User extends Authenticatable
     {
         return Attribute::make(
             get: fn ($value) => $value?? getSetting('task_per_page'),
+        );
+    }
+
+    const USER_TYPE = 2;
+    const ADMIN_TYPE = 1;
+
+    public function isAdmin(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value,$attrs) => $attrs['type'] == self::ADMIN_TYPE,
         );
     }
 }

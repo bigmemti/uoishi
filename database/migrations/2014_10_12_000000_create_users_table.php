@@ -20,7 +20,8 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
-            $table->tinyInteger('task_per_page')->nullable();
+            $table->unsignedTinyInteger('task_per_page')->nullable();
+            $table->unsignedTinyInteger('type')->default(2);
             $table->timestamps();
             $table->softDeletes();
         });
