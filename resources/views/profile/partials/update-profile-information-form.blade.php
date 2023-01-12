@@ -47,6 +47,12 @@
             @endif
         </div>
 
+        <div>
+            <x-input-label for="task_per_page" :value="__('Task per page')" />
+            <x-text-input id="task_per_page" name="task_per_page" type="text" class="mt-1 block w-full" :value="old('task_per_page', $user->task_per_page)" required autofocus autocomplete="name" />
+            <x-input-error class="mt-2" :messages="$errors->get('task_per_page')" />
+        </div>
+
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('Save') }}</x-primary-button>
 
