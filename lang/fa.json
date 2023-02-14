@@ -12,5 +12,10 @@
     "Cancel" : "انصراف",
     "Yes, delete it!" : "بله، حذف کن.",
     "delete" : "حذف",
-    "there is no task." : "هیچ تسکی وجود ندارد."
+    "there is no task." : "هیچ تسکی وجود ندارد.",
+    "Dashboard" : "داشبرد",
+    "Tasks" : "تسک‌ها",
+    "Profile" : "پروفایل",
+    "Log Out" : "خروج",
+    "You're logged in!" : "شما وارد شده‌اید !"
 }
