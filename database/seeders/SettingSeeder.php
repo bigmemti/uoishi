@@ -18,8 +18,7 @@ class SettingSeeder extends Seeder
         $settings=[
             [
                 'name' => 'task_per_page',
-                'en_title' => 'task per page',
-                'fa_title' => 'تعداد تسک در صفحه',
+                'title' => 'Task per page',
                 'value' => 5
             ]
         ];
