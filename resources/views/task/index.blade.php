@@ -11,19 +11,19 @@
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900">
-                        <form action="{{ route('user.task.store', ['user' => $user]) }}" method="POST" class="flex flex-col gap-4">
-                            @csrf
-
+                        <form action="{{ route('user.task.store', ['user' => $user]) }}" method="POST" class="flex flex-col space-y-4">
+                            
                             <lable class="text-gray-400 font-bold">{{__("Title")}}</lable>
                             <input type="text" name="title" id="title" class="rounded-lg transition-all duration-300" autofocus value="{{old('title')}}">
                             @error('title')
-                                <p class="text-sm text-red-600">{{$message}}</p>
+                            <p class="text-sm text-red-600">{{$message}}</p>
                             @enderror
                             <div>
                                 <button type="submit" class="ring-2 ring-transparent px-3 py-2 text-center rounded-lg bg-blue-700 text-white
-                                    hover:bg-blue-600 active:ring-blue-400 active:bg-blue-500">
-                                    {{__("Add")}}
-                                </button>
+                                hover:bg-blue-600 active:ring-blue-400 active:bg-blue-500">
+                                {{__("Add")}}
+                            </button>
+                            @csrf
                             </div>
                         </form>
                     </div>
