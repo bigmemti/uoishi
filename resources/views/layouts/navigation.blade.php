@@ -15,6 +15,9 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('user.index')" :active="request()->routeIs('user.index')">
+                        {{ __('Users') }}
+                    </x-nav-link>
                     <x-nav-link :href="route('user.task.index', ['user' => auth()->user()])" :active="request()->routeIs('user.task.index')">
                         {{ __('Tasks') }}
                     </x-nav-link>
@@ -76,11 +79,14 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('user.index')" :active="request()->routeIs('user.index')">
+                {{ __('Users') }}
+            </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('user.task.index', ['user' => auth()->user()])" :active="request()->routeIs('user.task.index')">
                 {{ __('Tasks') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('user.task.trash', ['user' => auth()->user()])" :active="request()->routeIs('user.task.trash')">
-                        {{ __('Trash') }}
+                {{ __('Trash') }}
             </x-responsive-nav-link>
         </div>
 

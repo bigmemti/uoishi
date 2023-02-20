@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TaskTrashController;
 
@@ -18,6 +19,7 @@ use App\Http\Controllers\TaskTrashController;
 
 Route::redirect('/', '/dashboard');
 
+Route::resource('user', UserController::class, ['only' => ['index', 'show','destroy']])->middleware(['auth']);
 Route::resource('user.task', TaskController::class, ['only' => ['index', 'store', 'destroy']])->shallow()->middleware(['auth']);
 Route::get('/user/{user}/trash', [TaskTrashController::class, 'index'])->name('user.task.trash')->middleware(['auth']);
 Route::patch('/task/{task}/restore', [TaskTrashController::class, 'restore'])->name('task.restore')->withTrashed()->middleware(['auth']);
