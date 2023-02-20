@@ -18,6 +18,9 @@
                     <x-nav-link :href="route('user.task.index', ['user' => auth()->user()])" :active="request()->routeIs('user.task.index')">
                         {{ __('Tasks') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('user.task.trash', ['user' => auth()->user()])" :active="request()->routeIs('user.task.trash')">
+                        {{ __('Trash') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -75,6 +78,9 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('user.task.index', ['user' => auth()->user()])" :active="request()->routeIs('user.task.index')">
                 {{ __('Tasks') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('user.task.trash', ['user' => auth()->user()])" :active="request()->routeIs('user.task.trash')">
+                        {{ __('Trash') }}
             </x-responsive-nav-link>
         </div>
 
