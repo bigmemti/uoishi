@@ -19,7 +19,10 @@ use App\Http\Controllers\TaskTrashController;
 
 Route::redirect('/', '/dashboard');
 
-Route::resource('user', UserController::class, ['only' => ['index', 'show','destroy']])->middleware(['auth']);
+Route::resource('user', UserController::class, ['only' => ['index','destroy']])->middleware(['auth']);
+Route::get('/user/{user}', [UserController::class, 'show'])->name('user.show')->withTrashed()->middleware(['auth']);
+Route::patch('/user/{user}/restore', [UserController::class, 'restore'])->name('user.restore')->withTrashed()->middleware(['auth']);
+
 Route::resource('user.task', TaskController::class, ['only' => ['index', 'store', 'destroy']])->shallow()->middleware(['auth']);
 Route::get('/user/{user}/trash', [TaskTrashController::class, 'index'])->name('user.task.trash')->middleware(['auth']);
 Route::patch('/task/{task}/restore', [TaskTrashController::class, 'restore'])->name('task.restore')->withTrashed()->middleware(['auth']);

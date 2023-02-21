@@ -26,9 +26,67 @@
                                 @forelse ($users as $user)
                                     <tr class="border-b-2 border-b-gray-400 text-xl">
                                         <td class="text-center font-semibold">{{$user->id}}</td>
-                                        <td class="text-center">{{$user->name}}</td>
+                                        <td @class(['text-center','line-through' => $user->deleted_at])>{{$user->name}}</td>
                                         <td class="text-center">{{$user->email}}</td>
-                                        <td class="text-center"></td>
+                                        <td x-data class="text-center">
+                                            <a href="{{route('user.show', ['user' => $user])}}" class="w-18 ring-2 ring-transparent px-3 py-2 text-center rounded-lg
+                                                    bg-sky-700 text-white hover:bg-sky-600 active:ring-sky-400 active:bg-sky-500 inline-block my-2" >
+                                                <i class="fa fa-eye"></i>
+                                            </a>
+
+                                            @if(!$user->deleted_at)
+                                                <form @submit.prevent="
+                                                    Swal.fire({
+                                                        title: '{!!__("Are you sure?")!!}',
+                                                        text: '{!!__("You won\\'t be able to revert this!")!!}',
+                                                        icon: 'warning',
+                                                        showCancelButton: true,
+                                                        confirmButtonColor: '#d33',
+                                                        cancelButtonColor: '#666',
+                                                        cancelButtonText:'{!!__("Cancel")!!}',
+                                                        confirmButtonText: '{!!__("Yes, delete it!")!!}'
+                                                    }).then((result) => {
+                                                        if (result.isConfirmed) {
+                                                            $event.target.submit()
+                                                        }
+                                                    })
+                                                    " action="{{ route('user.destroy', ['user' => $user]) }}" method="POST"
+                                                    class="inline-block">
+                                                    @csrf
+                                                    @method('delete')
+                                                    <button type="submit" class="w-18 ring-2 ring-transparent px-3 py-2 text-center rounded-lg
+                                                        bg-red-700 text-white hover:bg-red-600 active:ring-red-400 active:bg-red-500 my-2">
+                                                        <i class="fa fa-trash"></i>
+                                                    </button>
+                                                </form>
+                                            @else
+                                                <form @submit.prevent="
+                                                    Swal.fire({
+                                                        title: '{!!__("Are you sure?")!!}',
+                                                        text: '{!!__("After restore, the task will return to the Tasks page!")!!}',
+                                                        icon: 'warning',
+                                                        showCancelButton: true,
+                                                        confirmButtonColor: '#3d3',
+                                                        cancelButtonColor: '#666',
+                                                        cancelButtonText:'{!!__("Cancel")!!}',
+                                                        confirmButtonText: '{!!__("Yes, restore it!")!!}'
+                                                    }).then((result) => {
+                                                        if (result.isConfirmed) {
+                                                            $event.target.submit()
+                                                        }
+                                                    })
+                                                    " action="{{ route('user.restore', ['user' => $user]) }}" method="POST"
+                                                    class="inline-block">
+                                                    @csrf
+                                                    @method('patch')
+                                                    <button type="submit" class="w-18 ring-2 ring-transparent px-3 py-2 text-center rounded-lg
+                                                        bg-green-700 text-white hover:bg-green-600 active:ring-green-400 active:bg-green-500 my-2">
+                                                        <i class="fa fa-recycle"></i>
+                                                    </button>
+                                                </form>
+                                            @endif
+                                            
+                                        </td>
                                     </tr>
 
                                 @empty
