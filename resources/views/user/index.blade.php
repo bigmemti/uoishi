@@ -28,13 +28,26 @@
                                         <td class="text-center font-semibold">{{$user->id}}</td>
                                         <td @class(['text-center','line-through' => $user->deleted_at])>{{$user->name}}</td>
                                         <td class="text-center">{{$user->email}}</td>
-                                        <td x-data class="text-center">
+                                        <td x-data class="rtl:text-left ltr:text-right">
+                                            
                                             <a href="{{route('user.show', ['user' => $user])}}" class="w-18 ring-2 ring-transparent px-3 py-2 text-center rounded-lg
                                                     bg-sky-700 text-white hover:bg-sky-600 active:ring-sky-400 active:bg-sky-500 inline-block my-2" >
-                                                <i class="fa fa-eye"></i>
+                                                <i class="fa-regular fa-eye"></i>
                                             </a>
+                                            
 
                                             @if(!$user->deleted_at)
+                                            
+                                                <a href="{{route('user.task.index', ['user' => $user])}}" class="w-18 ring-2 ring-transparent px-3 py-2 text-center rounded-lg
+                                                    bg-yellow-500 text-white hover:bg-yellow-400 active:ring-yellow-400 active:bg-yellow-300 inline-block my-2" >
+                                                    <i class="fa-regular fa-pen-to-square"></i>
+                                                </a>
+                                                
+                                                <a href="{{route('user.task.trash', ['user' => $user])}}" class="w-18 ring-2 ring-transparent px-3 py-2 text-center rounded-lg
+                                                    bg-violet-700 text-white hover:bg-violet-600 active:ring-violet-400 active:bg-violet-500 inline-block my-2" >
+                                                    <i class="fa-regular fa-trash-can"></i>
+                                                </a>
+
                                                 <form @submit.prevent="
                                                     Swal.fire({
                                                         title: '{!!__("Are you sure?")!!}',
@@ -56,7 +69,7 @@
                                                     @method('delete')
                                                     <button type="submit" class="w-18 ring-2 ring-transparent px-3 py-2 text-center rounded-lg
                                                         bg-red-700 text-white hover:bg-red-600 active:ring-red-400 active:bg-red-500 my-2">
-                                                        <i class="fa fa-trash"></i>
+                                                        <i class="fa-solid fa-trash-can"></i>
                                                     </button>
                                                 </form>
                                             @else

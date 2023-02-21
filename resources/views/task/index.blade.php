@@ -102,7 +102,7 @@
                                                 @method('delete')
                                                 <button type="submit" class="w-18 ring-2 ring-transparent px-3 py-2 text-center rounded-lg
                                                     bg-red-700 text-white hover:bg-red-600 active:ring-red-400 active:bg-red-500 my-2">
-                                                    <i class="fa fa-trash"></i>
+                                                    <i class="fa-solid fa-trash-can"></i>
                                                 </button>
                                             </form>
 
