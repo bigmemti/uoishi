@@ -23,7 +23,7 @@
                             </thead>
 
                             <tbody>
-                                @forelse ($users as $user)
+                                @foreach ($users as $user)
                                     <tr class="border-b-2 border-b-gray-400 text-xl">
                                         <td class="text-center font-semibold">{{$user->id}}</td>
                                         <td @class(['text-center','line-through' => $user->deleted_at])>{{$user->name}}</td>
@@ -101,19 +101,7 @@
                                             
                                         </td>
                                     </tr>
-
-                                @empty
-
-                                    <tr class="border-b-2 border-b-gray-400 text-xl">
-                                        <td colspan="4" class="text-center text-gray-600 cursor-pointer text-2xl
-                                            hover:text-gray-300  hover:bg-gray-700 transition-all duration-300">
-                                            <p class="my-2 text-sm md:text-base lg:text-lg xl:text-xl">
-                                                {{__("there is no user.")}}
-                                            </p>
-                                        </td>
-                                    </tr>
-
-                                @endforelse
+                                @endforeach
 
                             </tbody>
                         </table>

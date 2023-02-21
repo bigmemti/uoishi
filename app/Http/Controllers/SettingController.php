@@ -15,7 +15,9 @@ class SettingController extends Controller
      */
     public function index()
     {
-        //
+        $this->authorize('viewAny', Setting::class);
+        $settings = Setting::all();
+        return view('setting.index', ['settings' => $settings]);
     }
 
     /**
@@ -27,6 +29,8 @@ class SettingController extends Controller
      */
     public function update(UpdateSettingRequest $request, Setting $setting)
     {
-        //
+        $setting->update($request->validated());
+
+        return to_route('setting.index')->with('success', __('Setting Successfully updated.'));
     }
 }

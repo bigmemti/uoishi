@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\SettingController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TaskTrashController;
 
@@ -28,6 +29,7 @@ Route::get('/user/{user}/trash', [TaskTrashController::class, 'index'])->name('u
 Route::patch('/task/{task}/restore', [TaskTrashController::class, 'restore'])->name('task.restore')->withTrashed()->middleware(['auth']);
 Route::delete('/task/{task}/forceDelete', [TaskTrashController::class, 'forceDelete'])->name('task.forceDelete')->withTrashed()->middleware(['auth']);
 
+Route::resource('setting', SettingController::class, ['only' => ['index','update']])->middleware(['auth']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');

@@ -1,5 +1,6 @@
 @php
-    use App\Models\User;
+use App\Models\User;
+use App\Models\Setting;
 @endphp
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
     <!-- Primary Navigation Menu -->
@@ -21,6 +22,11 @@
                     @can('viewAny', User::class)
                         <x-nav-link :href="route('user.index')" :active="request()->routeIs('user.index')">
                             {{ __('Users') }}
+                        </x-nav-link>
+                    @endcan
+                    @can('viewAny', Setting::class)
+                        <x-nav-link :href="route('setting.index')" :active="request()->routeIs('setting.index')">
+                            {{ __('Settings') }}
                         </x-nav-link>
                     @endcan
                     <x-nav-link :href="route('user.task.index', ['user' => auth()->user()])" :active="request()->routeIs('user.task.index')">
@@ -87,6 +93,11 @@
             @can('viewAny', User::class)
                 <x-responsive-nav-link :href="route('user.index')" :active="request()->routeIs('user.index')">
                     {{ __('Users') }}
+                </x-responsive-nav-link>
+            @endcan
+            @can('viewAny', Setting::class)
+                <x-responsive-nav-link :href="route('setting.index')" :active="request()->routeIs('setting.index')">
+                    {{ __('Settings') }}
                 </x-responsive-nav-link>
             @endcan
             <x-responsive-nav-link :href="route('user.task.index', ['user' => auth()->user()])" :active="request()->routeIs('user.task.index')">

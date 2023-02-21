@@ -13,7 +13,7 @@ class UpdateSettingRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return request()->user()->is_admin;
     }
 
     /**
@@ -24,7 +24,7 @@ class UpdateSettingRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'value' => 'required|max:255'
         ];
     }
 }
