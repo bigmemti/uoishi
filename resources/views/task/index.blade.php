@@ -70,7 +70,7 @@
                                                             this.task.status = data.data.status;
                                                             Toast.fire({
                                                                 icon: 'success',
-                                                                title: '{!!__("Successfully updated.") !!}'
+                                                                title: '{!!__("Task Successfully updated.") !!}'
                                                             })
                                                         })
                                                 }

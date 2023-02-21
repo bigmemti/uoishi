@@ -1,8 +1,10 @@
 {
     "Create To Do" : " یک تسک ایجاد کنید",
-    "Successfully created." : "تسک با موفقیت ایجاد شد.",
-    "Successfully deleted." : "تسک با موفقیت حذف شد.",
-    "Successfully restored." : "تسک با موفقیت بازیابی شد.",
+    "Task Successfully created." : "تسک با موفقیت ایجاد شد.",
+    "Task Successfully deleted." : "تسک با موفقیت حذف شد.",
+    "Task Successfully restored." : "تسک با موفقیت بازیابی شد.",
+    "User Successfully deleted." : "کاربر با موفقیت حذف شد.",
+    "User Successfully restored." : "کاربر با موفقیت بازیابی شد.",
     "Id" : "شناسه",
     "Is admin" : "ادمین هست",
     "yes" : "بله",
@@ -18,7 +20,7 @@
     "Users" : "کاربران",
     "Status" : "وضعیت",
     "Action" : "عملیات",
-    "Successfully updated." : "تسک با موفقیت بروزرسانی شد.",
+    "Task Successfully updated." : "تسک با موفقیت بروزرسانی شد.",
     "Are you sure?" : "آیا مطمئن هستید؟",
     "You won\\'t be able to revert this!" : "شما نمی‌توانید این عمل را بازگردانید!",
     "After restore, the task will return to the Tasks page!" : "پس از بازیابی، کار به صفحه وظایف باز خواهد گشت!",
@@ -48,5 +50,7 @@
     "Update Password" : "بروزرسانی گذرواژه",
     "Are you sure your want to delete your account?" : "آیا مطمئن هستید که می خواهید حساب خود را حذف کنید؟",
     "Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain." : "پس از حذف حساب شما، تمام منابع و داده های آن برای همیشه حذف می شوند. قبل از حذف حساب خود، لطفاً هر گونه داده یا اطلاعاتی را که می خواهید حفظ کنید دانلود کنید.",
-    "Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete your account." : "پس از حذف حساب شما، تمام منابع و داده های آن برای همیشه حذف می شوند. لطفاً رمز عبور خود را وارد کنید تا تأیید کنید که می خواهید حساب خود را برای همیشه حذف کنید."
+    "Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete your account." : "پس از حذف حساب شما، تمام منابع و داده های آن برای همیشه حذف می شوند. لطفاً رمز عبور خود را وارد کنید تا تأیید کنید که می خواهید حساب خود را برای همیشه حذف کنید.",
+    "With this action, the user will be unavailable and disabled!" : "با این عمل  کاربر از دسترس خارج خواهد شد و غیر فعال میشود!",
+    "After restore, the user will be available!" : "بعد از بازیابی، کاربر دردسترس قرار خواهد گرفت!"
 }

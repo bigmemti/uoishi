@@ -42,7 +42,7 @@ class TaskController extends Controller
     {
         Task::create($request->validated());
 
-        return to_route('user.task.index', ['user' => $user])->with('success', __("Successfully created."));
+        return to_route('user.task.index', ['user' => $user])->with('success', __("Task Successfully created."));
     }
 
     /**
@@ -92,6 +92,6 @@ class TaskController extends Controller
         $user = $task->user_id;
         $task->delete();
 
-        return to_route('user.task.index', ['user' => $user])->with('success', __("Successfully deleted."));
+        return to_route('user.task.index', ['user' => $user])->with('success', __("Task Successfully deleted."));
     }
 }

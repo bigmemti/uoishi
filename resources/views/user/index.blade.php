@@ -51,7 +51,7 @@
                                                 <form @submit.prevent="
                                                     Swal.fire({
                                                         title: '{!!__("Are you sure?")!!}',
-                                                        text: '{!!__("You won\\'t be able to revert this!")!!}',
+                                                        text: '{!!__("With this action, the user will be unavailable and disabled!")!!}',
                                                         icon: 'warning',
                                                         showCancelButton: true,
                                                         confirmButtonColor: '#d33',
@@ -76,7 +76,7 @@
                                                 <form @submit.prevent="
                                                     Swal.fire({
                                                         title: '{!!__("Are you sure?")!!}',
-                                                        text: '{!!__("After restore, the task will return to the Tasks page!")!!}',
+                                                        text: '{!!__("After restore, the user will be available!")!!}',
                                                         icon: 'warning',
                                                         showCancelButton: true,
                                                         confirmButtonColor: '#3d3',
