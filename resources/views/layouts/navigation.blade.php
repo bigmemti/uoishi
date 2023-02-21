@@ -1,3 +1,6 @@
+@php
+    use App\Models\User;
+@endphp
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -15,9 +18,11 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('user.index')" :active="request()->routeIs('user.index')">
-                        {{ __('Users') }}
-                    </x-nav-link>
+                    @can('viewAny', User::class)
+                        <x-nav-link :href="route('user.index')" :active="request()->routeIs('user.index')">
+                            {{ __('Users') }}
+                        </x-nav-link>
+                    @endcan
                     <x-nav-link :href="route('user.task.index', ['user' => auth()->user()])" :active="request()->routeIs('user.task.index')">
                         {{ __('Tasks') }}
                     </x-nav-link>
@@ -79,9 +84,11 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('user.index')" :active="request()->routeIs('user.index')">
-                {{ __('Users') }}
-            </x-responsive-nav-link>
+            @can('viewAny', User::class)
+                <x-responsive-nav-link :href="route('user.index')" :active="request()->routeIs('user.index')">
+                    {{ __('Users') }}
+                </x-responsive-nav-link>
+            @endcan
             <x-responsive-nav-link :href="route('user.task.index', ['user' => auth()->user()])" :active="request()->routeIs('user.task.index')">
                 {{ __('Tasks') }}
             </x-responsive-nav-link>

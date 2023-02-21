@@ -17,15 +17,19 @@ class TaskTrashController extends Controller
 
     public function restore(Task $task)
     {
+        $this->authorize('restore', $task);
+
         $task->restore();
 
-        return to_route('user.task.trash',['user' => $task->user])->with('success', __("Successfully restored."));
+        return to_route('user.task.trash',['user' => $task->user])->with('success', __("Task Successfully restored."));
     }
     
     public function forceDelete(Task $task)
     {
+        $this->authorize('forceDelete', $task);
+
         $task->forceDelete();
 
-        return to_route('user.task.trash',['user' => $task->user])->with('success', __("Successfully deleted."));
+        return to_route('user.task.trash',['user' => $task->user])->with('success', __("Task Successfully deleted."));
     }
 }
