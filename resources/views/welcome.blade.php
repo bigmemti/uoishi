@@ -42,7 +42,9 @@
                                 امید است که هر روز به پیشرفت خود ادامه دهد
                             </p>
                             @auth
-    
+                                <div class="flex justify-center items-center space-x-3 rtl:space-x-reverse mt-4">
+                                    <a class="text-white bg-violet-600 text-xs p-3 md:text-base md:p-4 rounded-xl hover:bg-violet-500 border-2 border-transparent hover:border-violet-400" href="{{route('dashboard')}}">{{__('Dashboard')}}</a>
+                                </div>
                             @endauth
                             @guest
                                 <div class="flex justify-center items-center space-x-3 rtl:space-x-reverse mt-4">
