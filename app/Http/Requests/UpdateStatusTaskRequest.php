@@ -24,7 +24,7 @@ class UpdateStatusTaskRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'status' => 'required|boolean'
         ];
     }
 }
