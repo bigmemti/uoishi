@@ -18,7 +18,7 @@ use App\Http\Controllers\TaskTrashController;
 |
 */
 
-Route::redirect('/', '/dashboard');
+Route::view('/', 'welcome');
 
 Route::resource('user', UserController::class, ['only' => ['index','destroy']])->middleware(['auth']);
 Route::get('/user/{user}', [UserController::class, 'show'])->name('user.show')->withTrashed()->middleware(['auth']);
