@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Task;
-use Illuminate\Http\Request;
+use App\Http\Requests\UpdateStatusTaskRequest;
 
 class TaskStatusController extends Controller
 {
-    public function change(Request $request, Task $task)
+    public function change(UpdateStatusTaskRequest $request, Task $task)
     {
         $task->update(['status' => $request->status]);
 

@@ -19,4 +19,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::patch('task/{task}/changeStatus', [TaskStatusController::class, 'change'])->name('task.status');
+Route::middleware('auth:sanctum')->patch('task/{task}/changeStatus', [TaskStatusController::class, 'change'])->name('task.status');

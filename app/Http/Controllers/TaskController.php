@@ -17,9 +17,13 @@ class TaskController extends Controller
     public function index(User $user)
     {
         $this->authorize('viewAny', [Task::class,$user]);
+        
+        $user->tokens()->delete();
+        
+        $token = $user->createToken('status_token');
         $tasks = $user->tasks()->latest()->paginate($user->task_per_page);
 
-        return view('task.index', ['tasks' => $tasks, 'user' => $user]);
+        return view('task.index', ['tasks' => $tasks, 'user' => $user,'token' => $token]);
     }
 
     /**

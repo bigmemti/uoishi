@@ -64,6 +64,7 @@
                                                             }),
                                                             headers: {
                                                             'Content-type': 'application/json; charset=UTF-8',
+                                                            'Authorization' : 'Bearer {!! $token->plainTextToken !!}'
                                                             },
                                                         }).then(response => response.json())
                                                         .then(data => {
