@@ -13,7 +13,7 @@ class UpdateStatusTaskRequest extends FormRequest
      */
     public function authorize()
     {
-        return request()->user() == request()->task->user || request()->user()->is_admin;
+        return request()->user()->id === request()->task->user->id || request()->user()->is_admin;
     }
 
     /**
