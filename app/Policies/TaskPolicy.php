@@ -84,7 +84,7 @@ class TaskPolicy
      */
     public function restore(User $user, Task $task)
     {
-        //
+        return $user->id == $task->user_id;
     }
 
     /**
@@ -96,6 +96,6 @@ class TaskPolicy
      */
     public function forceDelete(User $user, Task $task)
     {
-        //
+        return $user->id == $task->user_id;
     }
 }
