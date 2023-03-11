@@ -30,6 +30,9 @@ class StoreTaskRequest extends FormRequest
 
     public function validated($key = null, $default = null)
     {
-        return [...parent::validated(), 'user_id' => request()->user->id];
+        return [
+            ...parent::validated(),
+             'user_id' => request()->user->id
+        ];
     }
 }
