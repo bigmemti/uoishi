@@ -64,7 +64,47 @@ class User extends Authenticatable
     public function isAdmin(): Attribute
     {
         return Attribute::make(
-            get: fn ($value,$attrs) => $attrs['type'] == self::ADMIN_TYPE,
+            get: fn ($value,$attributes) => $attributes['type'] == self::ADMIN_TYPE,
+        );
+    }
+
+    public function name(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => $value,
+            set: fn($value) => $value
+        );
+    }
+
+    public function email(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => $value,
+            set: fn($value) => $value
+        );
+    }
+
+    public function password(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => $value,
+            set: fn($value) => $value
+        );
+    }
+
+    public function task_per_page(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => $value,
+            set: fn($value) => $value
+        );
+    }
+
+    public function type(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => $value,
+            set: fn($value) => $value
         );
     }
 }

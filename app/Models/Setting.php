@@ -9,5 +9,33 @@ class Setting extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'en_title', 'fa_title', 'value'];
+    protected $fillable = [
+        'name',
+        'title',
+        'value'
+    ];
+
+    public function name(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => $value,
+            set: fn($value) => $value
+        );
+    }
+
+    public function value(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => $value,
+            set: fn($value) => $value
+        );
+    }
+
+    public function title(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => $value,
+            set: fn($value) => $value
+        );
+    }
 }
