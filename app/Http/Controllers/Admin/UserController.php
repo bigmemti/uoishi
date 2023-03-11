@@ -19,7 +19,9 @@ class UserController extends Controller
 
         $users = User::latest()->withTrashed()->paginate(10);
 
-        return view('user.index', ['users' => $users]);
+        return view('user.index', [
+            'users' => $users
+        ]);
     }
 
     /**
@@ -32,7 +34,9 @@ class UserController extends Controller
     {
         $this->authorize('view', $user);
 
-        return view('user.show', ['user' => $user]);
+        return view('user.show', [
+            'user' => $user
+        ]);
     }
 
     /**
@@ -47,7 +51,7 @@ class UserController extends Controller
 
         $user->delete();
 
-        return to_route('user.index')->with('success', __("User Successfully deleted."));
+        return to_route('user.index')->withSuccess(__("User Successfully deleted."));
     }
 
     public function restore(User $user)
@@ -56,6 +60,6 @@ class UserController extends Controller
 
         $user->restore();
 
-        return to_route('user.index')->with('success', __("User Successfully restored."));
+        return to_route('user.index')->withSuccess(__("User Successfully restored."));
     }
 }

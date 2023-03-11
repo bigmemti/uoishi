@@ -17,14 +17,20 @@ class TaskController extends Controller
      */
     public function index(User $user)
     {
-        $this->authorize('viewAny', [Task::class,$user]);
+        $this->authorize('viewAny', [
+            Task::class,
+            $user
+        ]);
 
         $user->tokens()->delete();
-
         $token = auth()->user()->createToken('status_token');
         $tasks = $user->tasks()->latest()->paginate($user->task_per_page);
 
-        return view('task.index', ['tasks' => $tasks, 'user' => $user,'token' => $token]);
+        return view('task.index', [
+            'tasks' => $tasks,
+             'user' => $user,
+             'token' => $token
+        ]);
     }
 
     /**
@@ -37,7 +43,9 @@ class TaskController extends Controller
     {
         Task::create($request->validated());
 
-        return to_route('user.task.index', ['user' => $user])->with('success', __("Task Successfully created."));
+        return to_route('user.task.index', [
+            'user' => $user
+        ])->withSuccess(__("Task Successfully created."));
     }
 
     /**
@@ -53,6 +61,8 @@ class TaskController extends Controller
         $user = $task->user_id;
         $task->delete();
 
-        return to_route('user.task.index', ['user' => $user])->with('success', __("Task Successfully deleted."));
+        return to_route('user.task.index', [
+            'user' => $user
+        ])->withSuccess(__("Task Successfully deleted."));
     }
 }

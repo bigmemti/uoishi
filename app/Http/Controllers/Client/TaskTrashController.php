@@ -13,7 +13,10 @@ class TaskTrashController extends Controller
     {
         $tasks = $user->tasks()->onlyTrashed()->latest('deleted_at')->paginate($user->task_per_page);
 
-        return view('task.trash', ['tasks' => $tasks, 'user' => $user]);
+        return view('task.trash', [
+            'tasks' => $tasks,
+            'user' => $user
+        ]);
     }
 
     public function restore(Task $task)
@@ -22,7 +25,9 @@ class TaskTrashController extends Controller
 
         $task->restore();
 
-        return to_route('user.task.trash',['user' => $task->user])->with('success', __("Task Successfully restored."));
+        return to_route('user.task.trash',[
+            'user' => $task->user
+        ])->withSuccess(__("Task Successfully restored."));
     }
 
     public function forceDelete(Task $task)
@@ -31,6 +36,8 @@ class TaskTrashController extends Controller
 
         $task->forceDelete();
 
-        return to_route('user.task.trash',['user' => $task->user])->with('success', __("Task Successfully deleted."));
+        return to_route('user.task.trash',[
+            'user' => $task->user
+        ])->withSuccess(__("Task Successfully deleted."));
     }
 }

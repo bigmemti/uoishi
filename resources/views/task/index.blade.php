@@ -12,7 +12,7 @@
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900">
                         <form action="{{ route('user.task.store', ['user' => $user]) }}" method="POST" class="flex flex-col space-y-4">
-                            
+
                             <lable class="text-gray-400 font-bold">{{__("Title")}}</lable>
                             <input type="text" name="title" id="title" class="rounded-lg transition-all duration-300" autofocus value="{{old('title')}}">
                             @error('title')
@@ -68,7 +68,7 @@
                                                             },
                                                         }).then(response => response.json())
                                                         .then(data => {
-                                                            this.task.status = data.data.status;
+                                                            this.task.status = data.status;
                                                             Toast.fire({
                                                                 icon: 'success',
                                                                 title: '{!!__("Task Successfully updated.") !!}'
