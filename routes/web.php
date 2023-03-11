@@ -20,20 +20,22 @@ use App\Http\Controllers\TaskTrashController;
 
 Route::view('/', 'welcome');
 
+// Admin Routes
+
 Route::resource('user', UserController::class, ['only' => ['index','destroy']])->middleware(['auth']);
 Route::get('/user/{user}', [UserController::class, 'show'])->name('user.show')->withTrashed()->middleware(['auth']);
-Route::patch('/user/{user}/restore', [UserController::class, 'restore'])->name('user.restore')->withTrashed()->middleware(['auth']);
-
-Route::resource('user.task', TaskController::class, ['only' => ['index', 'store', 'destroy']])->shallow()->middleware(['auth']);
-Route::get('/user/{user}/trash', [TaskTrashController::class, 'index'])->name('user.task.trash')->middleware(['auth']);
-Route::patch('/task/{task}/restore', [TaskTrashController::class, 'restore'])->name('task.restore')->withTrashed()->middleware(['auth']);
-Route::delete('/task/{task}/forceDelete', [TaskTrashController::class, 'forceDelete'])->name('task.forceDelete')->withTrashed()->middleware(['auth']);
+Route::patch('/user/{user}/restore', [UserController::class, 'restore'])->name('user.restore')->onlyTrashed()->middleware(['auth']);
 
 Route::resource('setting', SettingController::class, ['only' => ['index','update']])->middleware(['auth']);
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Client Routes
+
+Route::resource('user.task', TaskController::class, ['only' => ['index', 'store', 'destroy']])->shallow()->middleware(['auth']);
+Route::get('/user/{user}/trash', [TaskTrashController::class, 'index'])->name('user.task.trash')->middleware(['auth']);
+Route::patch('/task/{task}/restore', [TaskTrashController::class, 'restore'])->name('task.restore')->onlyTrashed()->middleware(['auth']);
+Route::delete('/task/{task}/forceDelete', [TaskTrashController::class, 'forceDelete'])->name('task.forceDelete')->withTrashed()->middleware(['auth']);
+
+Route::view('/dashboard', 'dashboard')->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
