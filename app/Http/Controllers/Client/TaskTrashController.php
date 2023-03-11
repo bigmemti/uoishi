@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Client;
 
-use Illuminate\Http\Request;
-use App\Models\User;
 use App\Models\Task;
+use App\Models\User;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class TaskTrashController extends Controller
 {
@@ -23,7 +24,7 @@ class TaskTrashController extends Controller
 
         return to_route('user.task.trash',['user' => $task->user])->with('success', __("Task Successfully restored."));
     }
-    
+
     public function forceDelete(Task $task)
     {
         $this->authorize('forceDelete', $task);

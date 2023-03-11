@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\TaskStatusController;
+use App\Http\Controllers\Client\Api\TaskStatusController;
 
 /*
 |--------------------------------------------------------------------------

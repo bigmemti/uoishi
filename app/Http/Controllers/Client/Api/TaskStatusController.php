@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Client\Api;
 
 use App\Models\Task;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateStatusTaskRequest;
 
 class TaskStatusController extends Controller

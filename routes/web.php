@@ -1,11 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\TaskController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\SettingController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\TaskTrashController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Client\TaskController;
+use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\Client\ProfileController;
+use App\Http\Controllers\Client\TaskTrashController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,7 +24,7 @@ Route::view('/', 'welcome');
 
 Route::resource('user', UserController::class, ['only' => ['index','destroy']])->middleware(['auth']);
 Route::get('/user/{user}', [UserController::class, 'show'])->name('user.show')->withTrashed()->middleware(['auth']);
-Route::patch('/user/{user}/restore', [UserController::class, 'restore'])->name('user.restore')->onlyTrashed()->middleware(['auth']);
+Route::patch('/user/{user}/restore', [UserController::class, 'restore'])->name('user.restore')->withTrashed()->middleware(['auth']);
 
 Route::resource('setting', SettingController::class, ['only' => ['index','update']])->middleware(['auth']);
 
@@ -32,7 +32,7 @@ Route::resource('setting', SettingController::class, ['only' => ['index','update
 
 Route::resource('user.task', TaskController::class, ['only' => ['index', 'store', 'destroy']])->shallow()->middleware(['auth']);
 Route::get('/user/{user}/trash', [TaskTrashController::class, 'index'])->name('user.task.trash')->middleware(['auth']);
-Route::patch('/task/{task}/restore', [TaskTrashController::class, 'restore'])->name('task.restore')->onlyTrashed()->middleware(['auth']);
+Route::patch('/task/{task}/restore', [TaskTrashController::class, 'restore'])->name('task.restore')->withTrashed()->middleware(['auth']);
 Route::delete('/task/{task}/forceDelete', [TaskTrashController::class, 'forceDelete'])->name('task.forceDelete')->withTrashed()->middleware(['auth']);
 
 Route::view('/dashboard', 'dashboard')->middleware(['auth', 'verified'])->name('dashboard');
