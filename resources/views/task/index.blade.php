@@ -12,7 +12,7 @@
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900">
                         <form action="{{ route('user.task.store', ['user' => $user]) }}" method="POST" class="flex flex-col space-y-4">
-                            
+
                             <lable class="text-gray-400 font-bold">{{__("Title")}}</lable>
                             <input type="text" name="title" id="title" class="rounded-lg transition-all duration-300" autofocus value="{{old('title')}}">
                             @error('title')
@@ -77,7 +77,7 @@
                                                 }
                                         }">
                                         <td class="text-center font-semibold">{{$task->id}}</td>
-                                        <td class="text-center" :class="task.status ? 'text-gray-400 line-through': null">{{$task->title}}</td>
+                                        <td class="text-center break-all p-3" :class="task.status ? 'text-gray-400 line-through': null">{{$task->title}}</td>
                                         <td class="text-center">
                                             <input class="hover:cursor-pointer" type="checkbox" :checked="task.status ? true : false" @input="change">
                                         </td>

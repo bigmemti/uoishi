@@ -26,7 +26,7 @@
                                     <tr class="border-b-2 border-b-gray-400 text-xl"
                                         x-data>
                                         <td class="text-center font-semibold">{{$task->id}}</td>
-                                        <td class="text-center">{{$task->title}}</td>
+                                        <td class="text-center break-all p-3">{{$task->title}}</td>
                                         <td class="text-center">
 
                                             <form @submit.prevent="
