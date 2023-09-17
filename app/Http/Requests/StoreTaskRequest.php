@@ -24,12 +24,13 @@ class StoreTaskRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|string|min:4|max:255'
+            'title' => 'required|string|min:4|max:255',
+            'prefix' => 'required_if:has_prefix,true'
         ];
     }
 
     public function validated($key = null, $default = null)
     {
-        return [...parent::validated(), 'user_id' => request()->user->id];
+        return ['user_id' => request()->user->id, 'title' => (request()->has_prefix)? request()->prefix . ' '. request()->separator .' ' . request()->title: request()->title];
     }
 }

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Prefix;
 use App\Http\Requests\StorePrefixRequest;
-use App\Http\Requests\UpdatePrefixRequest;
 
 class PrefixController extends Controller
 {
@@ -13,19 +13,13 @@ class PrefixController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(User $user)
     {
-        //
-    }
+        $this->authorize('viewAny', [Prefix::class,$user]);
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        $prefixes = $user->prefixes;
+
+        return view('prefix.index', ['prefixes' => $prefixes, 'user' => $user]);
     }
 
     /**
@@ -34,43 +28,11 @@ class PrefixController extends Controller
      * @param  \App\Http\Requests\StorePrefixRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StorePrefixRequest $request)
+    public function store(StorePrefixRequest $request, User $user)
     {
-        //
-    }
+        $user->prefixes()->create($request->validated());
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Prefix  $prefix
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Prefix $prefix)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Prefix  $prefix
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Prefix $prefix)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdatePrefixRequest  $request
-     * @param  \App\Models\Prefix  $prefix
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdatePrefixRequest $request, Prefix $prefix)
-    {
-        //
+        return to_route('user.prefix.index', ['user' => $user])->with('success', __("Prefix Successfully created."));
     }
 
     /**
@@ -81,6 +43,11 @@ class PrefixController extends Controller
      */
     public function destroy(Prefix $prefix)
     {
-        //
+        $this->authorize('delete', $prefix);
+
+        $user = $prefix->user_id;
+        $prefix->delete();
+
+        return to_route('user.prefix.index', ['user' => $user])->with('success', __("Prefix Successfully deleted."));
     }
 }

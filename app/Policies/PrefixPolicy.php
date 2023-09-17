@@ -10,15 +10,22 @@ class PrefixPolicy
 {
     use HandlesAuthorization;
 
+    public function before(User $user)
+    {
+        if ($user->is_admin) {
+            return true;
+        }
+    }
+
     /**
      * Determine whether the user can view any models.
      *
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function viewAny(User $user)
+    public function viewAny(User $user, User $owner)
     {
-        //
+        return $user == $owner;
     }
 
     /**
@@ -65,7 +72,7 @@ class PrefixPolicy
      */
     public function delete(User $user, Prefix $prefix)
     {
-        //
+        return $user->id == $prefix->user_id;
     }
 
     /**

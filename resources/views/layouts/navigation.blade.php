@@ -32,6 +32,9 @@ use App\Models\Setting;
                     <x-nav-link :href="route('user.task.index', ['user' => auth()->user()])" :active="request()->routeIs('user.task.index')">
                         {{ __('Tasks') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('user.prefix.index', ['user' => auth()->user()])" :active="request()->routeIs('user.prefix.index')">
+                        {{ __('Prefixes') }}
+                    </x-nav-link>
                     <x-nav-link :href="route('user.task.trash', ['user' => auth()->user()])" :active="request()->routeIs('user.task.trash')">
                         {{ __('Trash') }}
                     </x-nav-link>
@@ -102,6 +105,9 @@ use App\Models\Setting;
             @endcan
             <x-responsive-nav-link :href="route('user.task.index', ['user' => auth()->user()])" :active="request()->routeIs('user.task.index')">
                 {{ __('Tasks') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('user.prefix.index', ['user' => auth()->user()])" :active="request()->routeIs('user.prefix.index')">
+                {{ __('Prefixes') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('user.task.trash', ['user' => auth()->user()])" :active="request()->routeIs('user.task.trash')">
                 {{ __('Trash') }}

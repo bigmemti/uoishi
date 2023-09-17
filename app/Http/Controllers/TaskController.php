@@ -22,8 +22,14 @@ class TaskController extends Controller
 
         $token = auth()->user()->createToken('status_token');
         $tasks = $user->tasks()->latest()->paginate($user->task_per_page);
+        $prefixes = $user->prefixes;
 
-        return view('task.index', ['tasks' => $tasks, 'user' => $user,'token' => $token]);
+        return view('task.index', [
+            'tasks' => $tasks,
+            'user' => $user,
+            'token' => $token,
+            'prefixes' => $prefixes
+        ]);
     }
 
     /**

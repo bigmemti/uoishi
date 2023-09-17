@@ -51,6 +51,11 @@ class User extends Authenticatable
         return $this->hasMany(Task::class);
     }
 
+    public function prefixes()
+    {
+        return $this->hasMany(Prefix::class);
+    }
+
     protected function taskPerPage(): Attribute
     {
         return Attribute::make(

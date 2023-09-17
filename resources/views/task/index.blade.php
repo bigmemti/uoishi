@@ -21,9 +21,38 @@
                             <div>
                                 <button type="submit" class="ring-2 ring-transparent px-3 py-2 text-center rounded-lg bg-blue-700 text-white
                                 hover:bg-blue-600 active:ring-blue-400 active:bg-blue-500">
-                                {{__("Add")}}
-                            </button>
-                            @csrf
+                                    {{__("Add")}}
+                                </button>
+                                @csrf
+                            </div>
+                            <div class="flex justify-between items-center gap-4" x-data="{checked : false}" >
+                                <div class="flex-grow-1">
+                                    <input type="checkbox" name="has_prefix" id="has-prefix" x-model="checked" value="true">
+                                    <label for="has-prefix" class="text-md md:text-xl">{{ __('Has prefix?') }}</label>
+                                </div>
+                                <div class="flex-grow-[2]">
+                                    <select name="prefix" id="prefix" :disabled="!checked" class="w-[50%]">
+                                        @forelse ($prefixes as $prefix)
+                                            <option value="{{ $prefix->title }}">{{ $prefix->title}}</option>
+                                        @empty
+
+                                        @endforelse
+                                    </select>
+                                    <select name="separator" id="separator" :disabled="!checked" class="w-[45%]">
+                                        <option value="/">/</option>
+                                        <option value=" "> </option>
+                                        <option value="|">|</option>
+                                        <option value="-">-</option>
+                                        <option value="_">_</option>
+                                        <option value="->">-></option>
+                                    </select>
+                                </div>
+                                <a class="flex-grow-1 text-md md:text-xl px-4 py-2 bg-green-700 text-white rounded-xl" href="{{ route('user.prefix.index', ['user' => $user]) }}">{{ __('Create a new prefix.') }}</a>
+                            </div>
+                            <div>
+                                @error('prefix')
+                                    <p class="text-sm text-red-600">{{$message}}</p>
+                                @enderror
                             </div>
                         </form>
                     </div>
