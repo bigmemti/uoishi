@@ -18,3 +18,5 @@ yarn-error.log
 /.vscode
 public/public.zip
 uioshi.zip
+*.vpp.lck
+*.vpp.bak*
