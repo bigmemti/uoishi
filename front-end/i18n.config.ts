@@ -39,6 +39,7 @@ export default defineI18nConfig(() => ({
         "Yes, delete it!" : "بله، حذف کن.",
         "Current Password" : "گذرواژه فعلی",
         "Remember me" : "مرا به خاطر بسپار",
+        "Powered by" : "با افتخار نیرو گرفته از",
         "Confirm Password" : "تایید گذرواژه",
         "Are you sure?" : "آیا مطمئن هستید؟",
         "Reset Password" : "بازنشانی گذرواژه",
